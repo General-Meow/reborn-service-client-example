@@ -2,20 +2,48 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkstyle & PMD') {
+            steps {
+                echo 'Checkstyle & PMD..'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh './mvnw clean build'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh './mvnw test'
             }
         }
-        stage('Deploy') {
+        stage('mvn Install') {
+            steps {
+                echo 'mvn install....'
+            }
+        }
+        stage('Deploy artifact to artifactory') {
             steps {
                 echo 'Deploying....'
             }
         }
+        stage('Build Docker') {
+            steps {
+                echo 'Building docker image....'
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                echo 'Pushing Docker Image....'
+            }
+        }
+        stage('Deploy Docker Image') {
+            steps {
+                echo 'Deploying Docker Image....'
+            }
+        }
+
     }
 }
