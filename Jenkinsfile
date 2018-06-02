@@ -10,6 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'pwd'
                 sh './mvnw clean build'
             }
         }
