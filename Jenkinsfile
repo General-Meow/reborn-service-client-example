@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'pwd'
-                sh './mvnw clean build'
+                sh './mvnw clean compile'
             }
         }
         stage('Test') {
