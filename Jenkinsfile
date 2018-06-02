@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'whoami'
-                sh './mvnw test'
+                sh 'mvn test'
             }
         }
         stage('mvn Install') {
