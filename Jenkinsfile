@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'whoami'
-                sh 'sudo mvn test'
+                sh './mvnw test'
             }
         }
         stage('mvn Install') {
