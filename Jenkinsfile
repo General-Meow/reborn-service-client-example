@@ -17,6 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh 'whoami'
                 sh './mvnw test'
             }
         }
