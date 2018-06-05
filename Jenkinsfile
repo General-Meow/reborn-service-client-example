@@ -1,9 +1,11 @@
 pipeline {
     agent any
+      /*
       tools {
         maven 'Maven 3.5.2'
         jdk 'jdk8'
       }
+      */
       stages {
         stage ('Initialize') {
           steps {
@@ -19,10 +21,12 @@ pipeline {
             }
         }
         stage('Build') {
+            agent {
+                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+            }
             steps {
                 echo 'Building..'
-                sh 'pwd'
-                sh './mvnw clean compile'
+                sh 'mvn clean compile'
             }
         }
         stage('Test') {
