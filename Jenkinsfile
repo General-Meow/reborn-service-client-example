@@ -1,3 +1,5 @@
+/**
+*/
 pipeline {
     agent any
       /*
@@ -30,20 +32,30 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+            }
             steps {
                 echo 'Testing..'
-                sh 'whoami'
-                sh './mvnw test'
+                sh 'mvn test'
             }
         }
-        stage('mvn Install') {
+        stage('Maven Install') {
+            agent {
+                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+            }
             steps {
-                echo 'mvn install....'
+                echo 'Installing artifact locally'
+                sh 'mvn install'
             }
         }
         stage('Deploy artifact to artifactory') {
+            agent {
+                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+            }
             steps {
-                echo 'Deploying....'
+                echo 'Deploying Jar to Artifactory....'
+                sh 'mvn deploy'
             }
         }
         stage('Build Docker') {
