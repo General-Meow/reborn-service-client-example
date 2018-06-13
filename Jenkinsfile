@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build') {
             agent {
-                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+                docker { image 'generalmeow/jenkins-tools:1.1-arm' }
             }
             steps {
                 echo 'Building..'
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Test') {
             agent {
-                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+                docker { image 'generalmeow/jenkins-tools:1.1-arm' }
             }
             steps {
                 echo 'Testing..'
@@ -42,16 +42,16 @@ pipeline {
         }
         stage('Maven Install') {
             agent {
-                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+                docker { image 'generalmeow/jenkins-tools:1.1-arm' }
             }
             steps {
                 echo 'Installing artifact locally'
                 sh 'mvn install'
             }
         }
-        stage('Deploy artifact to artifactory') {
+        stage('Deploy jar to artifactory') {
             agent {
-                docker { image 'generalmeow/jenkins-tools:1.0-arm' }
+                docker { image 'generalmeow/jenkins-tools:1.1-arm' }
             }
             steps {
                 echo 'Deploying Jar to Artifactory....'
