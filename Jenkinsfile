@@ -1,14 +1,14 @@
 /**
 */
 pipeline {
-    agent any
-
-    /**
-    Global docker build tools
-    **/
-    docker {
-        image 'generalmeow/jenkins-tools:1.2-arm'
-        args '-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository'
+    agent {
+      /**
+      Global docker build tools
+      **/
+      docker {
+          image 'generalmeow/jenkins-tools:1.2-arm'
+          args '-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository'
+      }
     }
     stages {
       stage ('Initialize') {
