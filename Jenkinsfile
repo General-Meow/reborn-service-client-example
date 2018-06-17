@@ -1,7 +1,7 @@
 /**
 */
 node {
-  docker.image('generalmeow/jenkins-tools:1.2-arm')
+  docker.image('generalmeow/jenkins-tools:1.3-arm')
         .inside('-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository') {
 
     stage ('Initialize') {
