@@ -31,7 +31,7 @@ node {
     }
     stage('Build Docker') {
       echo 'downloading artifacts from artifactory....'
-      def server = Artifactory.newServer url: 'tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
+      def server = Artifactory.newServer url: 'http://tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
       def downloadSpec = """{
        "files": [
         {
