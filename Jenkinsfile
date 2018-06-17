@@ -30,9 +30,22 @@ node {
       sh 'mvn deploy'
     }
     stage('Build Docker') {
+      echo 'downloading artifacts from artifactory....'
+      def server = Artifactory.newServer url: 'tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
+      def downloadSpec = """{
+       "files": [
+        {
+            "pattern": "reborn-service-client-example/*.jar",
+            "target": "downloads/"
+          }
+       ]
+      }"""
+      server.download(downloadSpec)
+      echo 'Download comeplete'
+
       echo 'Building docker image....'
-    }
-    stage('Push Docker Image') {
+      def customImage = docker.build("rebord-service-client-example-:${env.BUILD_ID}")
+
       echo 'Pushing Docker Image....'
     }
     stage('Deploy Docker Image') {
