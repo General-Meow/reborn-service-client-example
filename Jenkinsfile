@@ -1,14 +1,13 @@
 /**
 */
 node {
-  checkout scm
+
   docker.image('generalmeow/jenkins-tools:1.3-arm')
         .inside('-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository') {
 
     stage ('Initialize') {
       sh '''
-      echo "PATH = ${PATH}"
-      echo "M2_HOME = ${M2_HOME}"
+      checkout scm
       '''
     }
     stage('Checkstyle & PMD') {
@@ -36,11 +35,14 @@ node {
       def downloadSpec = """{
        "files": [
         {
-            "pattern": "reborn-service-client-example/*.jar",
+            "pattern": "libs-release-local/**/*reborn-service-client-example*.jar",
             "target": "downloads/"
           }
        ]
       }"""
+      sh 'ls'
+      sh 'cd downloads'
+      sh 'ls'
       server.download(downloadSpec)
       echo 'Download comeplete'
 
