@@ -44,7 +44,7 @@ node {
       echo 'Download comeplete'
 
       echo 'Building docker image....'
-      def customImage = docker.build("rebord-service-client-example-:${env.BUILD_ID}")
+      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}")
 
       echo 'Pushing Docker Image....'
     }
