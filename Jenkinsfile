@@ -39,6 +39,7 @@ node {
           }
        ]
       }"""
+      sh 'mkdir ./downloads'
       sh 'ls'
       sh 'cd downloads'
       sh 'ls'
