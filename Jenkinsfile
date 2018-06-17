@@ -23,11 +23,11 @@ node {
     }
     stage('Maven Install') {
       echo 'Installing artifact locally'
-      sh 'mvn install'
+      sh 'mvn install -DskipTests'
     }
     stage('Deploy jar to artifactory') {
       echo 'Deploying Jar to Artifactory....'
-      sh 'mvn deploy'
+      sh 'mvn deploy -DskipTests'
     }
     stage('Build Docker') {
       echo 'downloading artifacts from artifactory....'
