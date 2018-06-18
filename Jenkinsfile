@@ -35,15 +35,16 @@ node {
        "files": [
         {
             "pattern": "libs-release-local/**/*reborn-service-client-example*.jar",
-            "target": "downloads/"
+            "target": "downloads/app.jar"
           }
        ]
       }"""
       sh 'mkdir ./downloads'
       sh 'ls'
       sh 'cd downloads'
-      sh 'ls'
+
       server.download(downloadSpec)
+      sh 'ls'
       echo 'Download comeplete'
 
       echo 'Building docker image....'
