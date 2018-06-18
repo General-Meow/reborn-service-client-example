@@ -33,11 +33,12 @@ node {
       echo 'downloading artifacts from artifactory....'
       pom = readMavenPom file: 'pom.xml'
 
+      def pomVersion = pom.version
       def server = Artifactory.newServer url: 'http://tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
       def downloadSpec = """{
        "files": [
         {
-            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${pom.version}/reborn-service-client-example-0.0.1.jar",
+            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-0.0.1.jar",
             "target": "downloads/app.jar"
           }
        ]
