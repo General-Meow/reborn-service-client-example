@@ -31,11 +31,13 @@ node {
     }
     stage('Build Docker') {
       echo 'downloading artifacts from artifactory....'
+      pom = readMavenPom file: 'pom.xml'
+
       def server = Artifactory.newServer url: 'http://tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
       def downloadSpec = """{
        "files": [
         {
-            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${POM_VERSION}/reborn-service-client-example-0.0.1.jar",
+            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${pom.version}/reborn-service-client-example-0.0.1.jar",
             "target": "downloads/app.jar"
           }
        ]
