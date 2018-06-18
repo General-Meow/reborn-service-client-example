@@ -34,7 +34,7 @@ node {
       def downloadSpec = """{
        "files": [
         {
-            "pattern": "libs-release-local/**/*reborn-service-client-example*.jar",
+            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${POM_VERSION}/reborn-service-client-example-0.0.1.jar",
             "target": "downloads/app.jar"
           }
        ]
@@ -44,6 +44,8 @@ node {
       sh 'cd downloads'
 
       server.download(downloadSpec)
+      sh 'echo listing files'
+      sh 'ech pwd'
       sh 'ls'
       echo 'Download comeplete'
 
