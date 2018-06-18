@@ -48,7 +48,7 @@ node {
       echo 'Download comeplete'
 
       echo 'Building docker image....'
-      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}", "-e APP_VERSION=${pomVersion} .")
+      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
 
       echo 'Pushing Docker Image....'
     }
