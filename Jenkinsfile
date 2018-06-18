@@ -44,17 +44,11 @@ node {
        ]
       }"""
       sh 'mkdir ./downloads'
-      sh 'ls'
-      sh 'cd downloads'
-
       server.download(downloadSpec)
-      sh 'echo listing files'
-      sh 'echo pwd'
-      sh 'ls'
       echo 'Download comeplete'
 
       echo 'Building docker image....'
-      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}")
+      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}", "-e APP_VERSION=${pomVersion} .")
 
       echo 'Pushing Docker Image....'
     }
