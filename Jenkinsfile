@@ -49,7 +49,7 @@ node {
 
       server.download(downloadSpec)
       sh 'echo listing files'
-      sh 'ech pwd'
+      sh 'echo pwd'
       sh 'ls'
       echo 'Download comeplete'
 
