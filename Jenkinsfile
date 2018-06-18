@@ -38,7 +38,7 @@ node {
       def downloadSpec = """{
        "files": [
         {
-            "pattern": libs-release-local/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-0.0.1.jar",
+            "pattern": "libs-release-local/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-${pomVersion}.jar",
             "target": "downloads/app.jar"
           }
        ]
