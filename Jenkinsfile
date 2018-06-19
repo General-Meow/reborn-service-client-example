@@ -48,9 +48,12 @@ node {
       echo 'Download comeplete'
 
       echo 'Building docker image....'
-      def customImage = docker.build("rebord-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
+      def dockerImage = docker.build("generalmeow/rebord-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
 
       echo 'Pushing Docker Image....'
+      docker.withRegistry('https://hub.docker.com', 'hub.docker'){
+        dockerImage.push(${env.BUILD_ID})
+      }
     }
     stage('Deploy Docker Image') {
       echo 'Deploying Docker Image....'
