@@ -10,8 +10,8 @@ node {
       sh '''
       '''
     }
-    stage('Checkstyle & PMD') {
-      echo 'Checkstyle & PMD..'
+    stage('Static analysis') {
+      echo 'Running static analysis tools..'
       sh 'mvn clean verify -P check -DskipTests'
     }
     stage('Build') {
@@ -30,7 +30,7 @@ node {
       echo 'Deploying Jar to Artifactory....'
       sh 'mvn deploy -DskipTests'
     }
-    stage('Build Docker') {
+    stage('Build and Publish Docker Image') {
       echo 'downloading artifacts from artifactory....'
       pom = readMavenPom file: 'pom.xml'
 
