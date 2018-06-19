@@ -51,7 +51,7 @@ node {
       def dockerImage = docker.build("generalmeow/reborn-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
 
       echo 'Pushing Docker Image....'
-      docker.withRegistry('http://hub.docker.com', 'hub.docker'){
+      docker.withRegistry('https://registry.hub.docker.com', 'hub.docker'){
         dockerImage.push()
       }
     }
