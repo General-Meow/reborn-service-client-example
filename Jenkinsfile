@@ -52,7 +52,7 @@ node {
 
       echo 'Pushing Docker Image....'
       docker.withRegistry('https://hub.docker.com', 'hub.docker'){
-        dockerImage.push(${env.BUILD_ID})
+        dockerImage.push()
       }
     }
     stage('Deploy Docker Image') {
