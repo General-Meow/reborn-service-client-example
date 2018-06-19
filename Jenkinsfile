@@ -48,11 +48,11 @@ node {
       echo 'Download comeplete'
 
       echo 'Building docker image....'
-      def dockerImage = docker.build("generalmeow/rebord-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
+      def dockerImage = docker.build("generalmeow/reborn-service-client-example:${env.BUILD_ID}", "--build-arg APP_VERSION=${pomVersion} .")
 
       echo 'Pushing Docker Image....'
       docker.withRegistry('https://hub.docker.com', 'hub.docker'){
-        dockerImage.push()
+        sh "docker push generalmeow/reborn-service-client-example:${env.BUILD_ID}"
       }
     }
     stage('Deploy Docker Image') {
