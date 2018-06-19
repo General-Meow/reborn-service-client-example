@@ -31,6 +31,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <spring-cloud.version>Finchley.BUILD-SNAPSHOT</spring-cloud.version>
+    <sat.version>0.5.0</sat.version>
   </properties>
 
   <dependencies>
@@ -75,6 +76,7 @@
     </dependencies>
   </dependencyManagement>
 
+
   <build>
     <plugins>
       <plugin>
@@ -82,17 +84,9 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>3.1.3</version>
-        <!--<dependencies>-->
-          <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-          <!--<dependency>-->
-            <!--<groupId>com.github.spotbugs</groupId>-->
-            <!--<artifactId>spotbugs</artifactId>-->
-            <!--<version>3.1.3</version>-->
-          <!--</dependency>-->
-        <!--</dependencies>-->
+        <groupId>org.openhab.tools.sat</groupId>
+        <artifactId>sat-plugin</artifactId>
+        <version>${sat.version}</version>
       </plugin>
     </plugins>
   </build>
@@ -116,5 +110,31 @@
     </repository>
   </repositories>
 
-
+  <profiles>
+    <profile>
+      <id>check</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.openhab.tools.sat</groupId>
+              <artifactId>sat-plugin</artifactId>
+              <version>${sat.version}</version>
+              <executions>
+                <execution>
+                  <phase>verify</phase>
+                  <goals>
+                    <goal>checkstyle</goal>
+                    <goal>pmd</goal>
+                    <goal>spotbugs</goal>
+                    <goal>report</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
 </project>

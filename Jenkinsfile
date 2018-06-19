@@ -12,6 +12,7 @@ node {
     }
     stage('Checkstyle & PMD') {
       echo 'Checkstyle & PMD..'
+      sh 'mvn clean verify -P check -DskipTests'
     }
     stage('Build') {
       echo 'Building..'
