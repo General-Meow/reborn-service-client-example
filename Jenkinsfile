@@ -12,7 +12,7 @@ node {
     }
     stage('Static analysis') {
       echo 'Running static analysis tools..'
-      sh 'mvn clean verify -P check -DskipTests'
+      // sh 'mvn clean verify -P check -DskipTests'
     }
     stage('Build') {
       echo 'Building..'
