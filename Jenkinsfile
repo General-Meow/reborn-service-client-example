@@ -3,7 +3,7 @@
 node {
   echo sh(script: 'env|sort', returnStdout: true)
   checkout scm
-  docker.image('generalmeow/jenkins-tools:1.3-arm')
+  docker.image('generalmeow/jenkins-tools:1.4-arm')
         .inside('-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository') {
 
     stage ('Initialize') {
