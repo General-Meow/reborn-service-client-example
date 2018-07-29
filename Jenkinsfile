@@ -7,8 +7,8 @@ node {
         .inside('-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository') {
 
     stage ('Initialize') {
-      sh '''
-      '''
+      //sh '''
+      //'''
     }
     stage('Static analysis') {
       echo 'Running static analysis tools..'
