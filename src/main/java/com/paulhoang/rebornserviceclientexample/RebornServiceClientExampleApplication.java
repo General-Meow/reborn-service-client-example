@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @EnableEurekaClient
 @EnableFeignClients
-@EnableAutoConfiguration
 @SpringBootApplication
 @RestController
 public class RebornServiceClientExampleApplication {
