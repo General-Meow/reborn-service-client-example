@@ -31,21 +31,23 @@ node {
       sh 'mvn deploy -DskipTests'
     }
     stage('Build and Publish Docker Image') {
-      echo 'downloading artifacts from artifactory....'
+      echo 'downloading artifacts from nexus....'
       pom = readMavenPom file: 'pom.xml'
 
       def pomVersion = pom.version
-      def server = Artifactory.newServer url: 'http://tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
-      def downloadSpec = """{
-       "files": [
-        {
-            "pattern": "libs-release-local/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-${pomVersion}.jar",
-            "target": "downloads/app.jar"
-          }
-       ]
-      }"""
+
+      //def server = Artifactory.newServer url: 'http://tinker.paulhoang.com:8081/artifactory', credentialsId: 'artifactory'
+      //def downloadSpec = """{
+      // "files": [
+      //  {
+      //      "pattern": "libs-release-local/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-${pomVersion}.jar",
+      //      "target": "downloads/app.jar"
+      //    }
+      // ]
+      //}"""
       sh 'mkdir ./downloads'
-      server.download(downloadSpec)
+      //server.download(downloadSpec)
+      sh 'curl -o ./downloads/app.jar "http://tinker.paulhoang.com:8081/repository/maven-releases/com/paulhoang/reborn-service-client-example/${pomVersion}/reborn-service-client-example-${pomVersion}.jar"'
       echo 'Download comeplete'
 
       echo 'Building docker image....'
