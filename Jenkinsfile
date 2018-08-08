@@ -3,7 +3,7 @@
 node {
   echo sh(script: 'env|sort', returnStdout: true)
   checkout scm
-  docker.image('generalmeow/jenkins-tools:1.4-arm')
+  docker.image('generalmeow/jenkins-tools:1.5-arm')
         .inside('-v /home/paul/work/docker/docker-maven-repo:/root/.m2/repository') {
 
     stage ('Initialize') {
@@ -26,8 +26,8 @@ node {
       echo 'Installing artifact locally'
       sh 'mvn install -DskipTests'
     }
-    stage('Deploy jar to artifactory') {
-      echo 'Deploying Jar to Artifactory....'
+    stage('Deploy jar to nexus') {
+      echo 'Deploying Jar to Nexus....'
       sh 'mvn deploy -DskipTests'
     }
     stage('Build and Publish Docker Image') {
