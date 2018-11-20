@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableFeignClients
 @SpringBootApplication
 @RestController
+@EnableCircuitBreaker
 public class RebornServiceClientExampleApplication {
 
 	public static void main(String[] args) {
@@ -24,6 +25,7 @@ public class RebornServiceClientExampleApplication {
 
 	@Autowired
 	private EurekaClient eurekaClient;
+
 	@Autowired
 	private Example2Client example2Client;
 
