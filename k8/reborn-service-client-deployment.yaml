@@ -42,6 +42,8 @@ spec:
         env:
         - name: AN_ENV_VARIABLE
           value: "https://THE_SERVICE_NAME" # set an env var do it will be sent to the docker container. here it uses the k8s dns to look up the ip for the service
+        - name: EUREKA_SERVICE_URL
+          value: http://reborn-service-discovery-service:8761/eureka/
         ports:
           - name: sc-port
             containerPort: 8081           # open up port 8761
