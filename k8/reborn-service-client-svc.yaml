@@ -1,0 +1,24 @@
+# To create a service to forward requests to multiple pods: kubectl create -f <FILE_NAME.yaml>
+# The service here will load balance requests to all targeted pods
+
+# To find the service: kubectl get svc
+# debugging a service can be done if you use minikube: minikube service sa-frontend-lb
+
+apiVersion: v1
+kind: Service              # A service.
+
+metadata:
+  name: reborn-service-client-service
+spec:
+  type: LoadBalancer       # LoadBalancer uses your cloud providers LB (allows ext access)
+                           # NodePort exposes the all of the node IPs onto a static port to access via (allows ext access)
+                           # ClusterIP, default exposes pods internally only
+  ports:
+  - port: 80               # The internal port number in which other pods/services can communicate with.
+                           # Service ports can only run on ports between 30000 - 32767
+    #nodePort: 80           # The port that is bound to the node that is also accessible from the outside, traffic to that port will
+                           # will be forwarded to this service. if left out, k8s will automatically assign a value between 30000-32767
+    protocol: TCP          # Defines the communication
+    targetPort: 8081       # The port at which incoming requests are forwarded to. This can also be the name of the defined port in the deployment
+  selector:                # Object that contains properties for selecting pods
+    app: reborn-service-client-deployment       # sa-frontend Defines which pods to target, only pods that are labeled with “app: sa-frontend”
