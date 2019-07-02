@@ -127,24 +127,25 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout
-      - static-analysis:
-          requires:
-            - checkout
-      - security-checks:
-          requires:
-            - checkout
-      - unit-tests:
-          requires:
-            - static-analysis
-            - security-checks
-      - integration-tests:
-          requires:
-            - static-analysis
-            - security-checks
+#      - static-analysis:
+#          requires:
+#            - checkout
+#      - security-checks:
+#          requires:
+#            - checkout
+#      - unit-tests:
+#          requires:
+#            - static-analysis
+#            - security-checks
+#      - integration-tests:
+#          requires:
+#            - static-analysis
+#            - security-checks
       - build:
           requires:
-            - unit-tests
-            - integration-tests
+            - checkout
+#            - unit-tests
+#            - integration-tests
           filters:
             branches:
                 only: master
