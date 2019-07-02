@@ -31,7 +31,7 @@ public class RebornServiceClientExampleApplication {
 
 	@GetMapping(path = "/test")
 	public String test() {
-		InstanceInfo nextServerFromEureka = eurekaClient.getNextServerFromEureka("REBORN SERVICE CLIENT EXAMPLE 2", false);
+		InstanceInfo nextServerFromEureka = eurekaClient.getNextServerFromEureka("REBORN-SERVICE-CLIENT-EXAMPLE-2", false);
 		return "client 2 homepage: " + nextServerFromEureka.getHomePageUrl();
 	}
 
