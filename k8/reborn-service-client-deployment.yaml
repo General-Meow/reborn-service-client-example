@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: reborn-service-client-pod      # a list of containers in this pod
-        image: generalmeow/reborn-service-client:latest
+        image: generalmeow/reborn-service-client-example:latest
         imagePullPolicy: Always   # when set to Always, it will pull the container images on each redeployment.
         env:
         - name: AN_ENV_VARIABLE
