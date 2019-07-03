@@ -29,6 +29,12 @@ public class RebornServiceClientExampleApplication {
 	@Autowired
 	private Example2Client example2Client;
 
+
+  @GetMapping(path = "/")
+  public String hello() {
+    return "Hello, there are 2 endpoints in this service, /test and /feignTest";
+  }
+
 	@GetMapping(path = "/test")
 	public String test() {
 		InstanceInfo nextServerFromEureka = eurekaClient.getNextServerFromEureka("REBORN-SERVICE-CLIENT-EXAMPLE-2", false);
